@@ -1,32 +1,36 @@
 import React from "react"
 import './index.css';
-import Navbar from "./Navbar";
-import Card from "./Card";
-import data from "./data (1)"
-import Searchbar from "./Searchbar";
+import Home from "./Home";
+import { LoginContextProvider } from "./LoginContext";
+import { BrowserRouter as Router, Routes,Route,Link } from "react-router-dom";
+import Cart from "./Cart";
+import Login from "./Login";
+import Registration from "./Registration";
+
+
+
 
 
 function App() {
-  const dataElements = data.map(items=>{
-    return <Card
-    name={items.name} 
-    description={items.description}
-    price={items.price}  
-    img={items.imgUrl}
-    />
-  }
-    
-  )
-
- 
   return(
-    <div>
-    <Navbar/>
-    <Searchbar/>
-    <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
-    {dataElements}
-    </div>
+  <div>
+      
+      <LoginContextProvider>
+        <Router>
+          
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/cart"element={<Cart/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/registration" element={<Registration/>}/>
+        </Routes> 
+        </Router> 
+   
+   
+    </LoginContextProvider>
+    
   </div>
+
   )
 
 }

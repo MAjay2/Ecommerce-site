@@ -1,5 +1,5 @@
 
-export default [
+ const data = [
 
       {id:'1',
       name:'Men Shirt',
@@ -52,3 +52,6 @@ export default [
 
 
 	]   
+
+
+      export default data
