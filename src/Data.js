@@ -1,57 +1,53 @@
 
- const data = [
-
+const Data = [
       {id:'1',
-      name:'Men Shirt',
-      description:'Lorem ipsum dolor sit amet consectetur. Eget orci viverra vel',
-      price:'$29.00',
-      imgUrl :'./asset/menshirt.png'
+      title:'Men Shirt',
+      body:'Lorem ipsum dolor sit amet consectetur. Eget orci viverra vel',
+      price:'29.00',
+      imgUrl:'./assets/menshirt.png' // Update path to assets folder
       },
       {id:'2',
-      name:'Nike Sneaker',
-      description:'Lorem ipsum dolor sit amet consectetur. Eget orci viverra vel',
-      price:'$39.00',
-      imgUrl : './asset/nikesneaker.png'
-      },
-      {id:'3',
-      name:'Puma Sneaker',
-      description:'Lorem ipsum dolor sit amet consectetur. Eget orci viverra vel',
-      price:'$30.00',
-      imgUrl : './asset/pumasneaker.png'
-      },
-      {id:'4',
-      name:'Alonzi Dress',
-      description:'Lorem ipsum dolor sit amet consectetur. Eget orci viverra vel',
-      price:'$19.00',
-      imgUrl : './asset/alonzidress.png'
-      },
-      {id:'5',
-      name:'Men Watch',
-      description:'Lorem ipsum dolor sit amet consectetur. Eget orci viverra vel',
-      price:'$16.00',
-      imgUrl : './asset/watch.png'
-      },
-      {id:'6',
-      name:'Men Cap',
-      description:'Lorem ipsum dolor sit amet consectetur. Eget orci viverra vel',
-      price:'$10.00',
-      imgUrl : './asset/cap.png'
-      },
-      {id:'7',
-      name:'Ladies Jeans',
-      description:'Lorem ipsum dolor sit amet consectetur. Eget orci viverra vel',
-      price:'$40.00',
-      imgUrl : './asset/jeans.png'
-      },
-      {id:'8',
-      name:'Long Sleeves',
-      description:'Lorem ipsum dolor sit amet consectetur. Eget orci viverra vel',
-      price:'$40.00',
-      imgUrl : './asset/longsleeves.png'
-      },
-
-
-	]   
-
-
-      export default data
+      title:'Nike Sneaker',
+      body:'Lorem ipsum dolor sit amet consectetur. Eget orci viverra vel',
+      price:'39.00',
+      imgUrl:'./assets/nikesneaker.png'
+     },
+     {id:'3',
+     title:'Puma Sneaker',
+     body:'Lorem ipsum dolor sit amet consectetur. Eget orci viverra vel',
+     price:'35.00',
+     imgUrl:'./assets/pumasneaker.png'
+    },
+    {id:'4',
+     title:'Cap',
+     body:'Lorem ipsum dolor sit amet consectetur. Eget orci viverra vel',
+     price:'15.00',
+     imgUrl:'./assets/cap.png'
+    },
+    {id:'5',
+    title:'watch',
+    body:'Lorem ipsum dolor sit amet consectetur. Eget orci viverra vel',
+    price:'50.00',
+    imgUrl:'./asset/watch.png'
+   },
+   {id:'6',
+     title:'Jeans',
+     body:'Lorem ipsum dolor sit amet consectetur. Eget orci viverra vel',
+     price:'26.00',
+     imgUrl:'./assets/jeans.png'
+    },
+    {id:'7',
+     title:'Long Sleeves',
+     body:'Lorem ipsum dolor sit amet consectetur. Eget orci viverra vel',
+     price:'25.00',
+     imgUrl:'./assets/longsleeves.png'
+    },
+    {id:'8',
+    title:'Alonzi Dress',
+    body:'Lorem ipsum dolor sit amet consectetur. Eget orci viverra vel',
+    price:'43.00',
+    imgUrl:'./assets/alonzidress.png'
+   },
+  ]
+  
+  export default Data;

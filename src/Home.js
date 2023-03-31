@@ -1,28 +1,21 @@
-import React from 'react'
-import Navbar from './Navbar'
-import Searchbar from './Searchbar'
-import Card from './Card'
-import Data from './Data'
-
+import React from 'react';
+import { CartState } from './CartContext';
+import SearchBar from './Searchbar';
+import CardList from './CardList';
 
 function Home() {
-    const dataElements = Data.map(items=>{
-        return <Card
-        key={items.id}
-        name={items.name} 
-        description={items.description}
-        price={items.price}  
-        img={items.imgUrl}
-        />
-})
+  // get the state from the cart context
+  const { state } = CartState();
+
+  // log the state to the console
+  console.log(state);
+
+  // render the search bar and cart list components
   return (
-    <div>
-        <Navbar/>
-        <Searchbar/>
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
-    {dataElements}
+    <div className='container'>
+      <SearchBar products={state.products} />
+      <CardList products={state.products} />
     </div>
-        
-    </div>
-  )
+  );
 }
+export default Home;

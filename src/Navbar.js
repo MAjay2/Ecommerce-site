@@ -1,46 +1,70 @@
-import React from "react"
-import './index.css';
-import { useContext } from "react";
-import { loginContext } from "./LoginContext";
-import Login from "./Login";
-import Registration from "./Registration";
-import {BrowserRouter as Router, Routes,Route,Link} from "react-router-dom";
-import App from "./App";
-import Cart from "./Cart";
+import React,{useState} from 'react'
+import logo from './logo.svg'
+import {Link,NavLink,useNavigate,useLocation} from 'react-router-dom'
+import { CartState } from './CartContext'
+import Button from './Button'
 
+// A function component that renders a navbar
+function Navbar() {
+    // Importing the necessary hooks
+    const location = useLocation()
+    const {state:{cart,user}} = CartState()
+    const [credential,setCredential]=useState(user)
+    const navigate = useNavigate()
 
-export default function Navbar(){
-    const {mickey}= useContext(loginContext)
-    return(
-        
-        <div className="h-16 shadow-md">
-        
+    // Function to handle user logout
+    function handleLogout(){
+      localStorage.removeItem('isLoggedin')
+      navigate('/login')
+    }
 
-        <div className="flex justify-between h-16 items-center ">
-            <div>
-                <h3 className="text-blue-900 font-bold ml-5"><span className="text-slate-900">Azubi</span> Frontend</h3>
+    // Rendering navbar with conditionals
+    return (
+        <div className='navbar-nav'>
+            <div className='navbar-brand'>
+                <Link to='/'>
+                    <img src={logo} alt='Azubi logo'/>
+                </Link>
             </div>
-
-            <div>
+            {/* Conditionals for rendering sign-up and login links */}
+            {location.pathname === '/register' ? (
+                <div className='nav-reg'>
+                    <p>Already have account?</p>
+                    <Link to='/login'>
+                        <Button name='Sign in'/>
+                    </Link>
+                </div>
+            ) : location.pathname === '/login' ? (
+                <div className='nav-reg'>
+                    <p>New to AzubiShop?</p>
+                    <Link to='/register'>
+                        <Button name='Sign up'/>
+                    </Link>
+                </div>
+            ) : 
                 
-            
-                <ul className="flex ">
-                <Link to="/" className="mx-3 text-blue-900 underline hover:underline-offset-4">Home</Link>
-                <Link to="/cart" className="mx-3 text-stone-400 ">Cart</Link>
-                </ul>
+                    <><div className='navbar-links'>
+                        <NavLink to='/'>
+                            <span>Home</span>
+                        </NavLink>
+                        <NavLink to='/cart'>
+                            <span className='cart-badge'>
+                                Cart {cart.length > 0 && <span className='badge'>{cart.length}</span>}
+                            </span>
+                        </NavLink>
+                    </div><div className='navbar-btn'>
+                            {/* Conditionals for rendering logout and login buttons */}
+                            {credential ? (
+                                <button className='btn btn-outline' onClick={handleLogout}>logout</button>
+                            ) : (
+                                <Link to='/login'>
+                                    <Button name='Login' />
+                                </Link>
+                            )}
+                        </div></>
                 
-                
-            
-            
-            </div>
-
-            <div>
-                <Link to="/Login" className="mr-5 bg-blue-900 text-white px-5 py-1 rounded animate-bounce hover:bg-blue-800">Login</Link>
-            </div>
-
+            }
         </div>
-        
-        </div>
-    )
-
+    );
 }
+export default Navbar;

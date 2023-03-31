@@ -1,64 +1,71 @@
-import React from "react"
-import Navbar from "./Navbar"
-import {Link} from "react-router-dom"
-import Registration from "./Registration"
-import { Formik, useFormik, validateYupSchema } from "formik"
-import * as Yup from "yup" 
-import { useNavigate } from "react-router-dom"
+import React from 'react';
+// Import necessary hooks from React Router and React Toastify
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
 
-export default function Login(){
-    const navigate=useNavigate();
-    const formik = useFormik({
-        initialValues:{
-            email:"",
-            password:"",
-        },
-        validationSchema:Yup.object({
-            email:Yup.string().email("Invalid email address").required("Required"),
-            password:Yup.string().required("Password is required"),
+// Define the Login component
+function Login() {
+  // Declare and initialize email and password state variables using the useState hook
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-        }),
-        onSubmit:(values)=>{
-            const loggedIn=JSON.parse(localStorage.getItem("userInfo"))
-            if(values.email===loggedIn.email && values.password===loggedIn.password)
-            {
-                navigate("/")
-            } else{
-                alert("Password and email do not match")
-            }
-        
-        }
+  // Declare the navigate function from the useNavigate hook
+  const navigate = useNavigate();
 
-    })
+  // Define the handleSubmit function that handles form submission
+  function handleSubmit(e) {
+    // Prevent the default form submission behavior
+    e.preventDefault();
 
-    return(
-        <>
-         <div className="flex justify-between mt-5">
-           <div>
-            <p className="text-sky-700 ml-5">Azubi<span className="text-slate-800">Shop</span></p>
-            </div> 
+    // Retrieve the user object from local storage and parse it to a JavaScript object
+    const loggedUser = JSON.parse(localStorage.getItem('user'));
+    console.log(loggedUser);
 
-            <div className="flex">
-                <p className="mr-8">New to AzubiShop ?</p>
-                <Link to="/registration" className="mr-8 bg-gray-200 border rounded text-center w-44 h-8">Create an Account</Link>
-            </div>
-        </div> 
+    // Check if the entered email and password match the user object retrieved from local storage
+    if (email === loggedUser.email && password === loggedUser.password) {
+      // If the entered email and password match, set the isLoggedIn flag to true in local storage
+      localStorage.setItem('isLoggedIn', true);
+      // Navigate the user to the home page
+      navigate('/');
+    } else {
+      // If the entered email and password do not match, display an error message using the toast function from React Toastify
+      toast.error('Wrong username or password');
+    }
+  }
 
-        <div className="mt-20 flex flex-col items-center content-center  ">
-            <h1 className="mb-5 text-xl">Sign In</h1>
-            <form className=" flex flex-col mt-10 " onSubmit={formik.handleSubmit}>
-                <label htmlFor="email"> Email Address</label>
-                <input id="email" name="email" className="w-72 h-12 bg-gray-200 rounded  p-6 " type="email" onChange={formik.handleChange}/>
-                {formik.errors.email ? <p className="text-rose-600">{formik.errors.email}</p>:null}
-
-                <label htmlFor="password" >Password</label>
-                <input className="w-72 h-12 bg-gray-200 rounded p-6  " id="password" name="password" type="password" onChange={formik.handleChange}/>
-                {formik.errors.password?<p className="text-rose-600">{formik.errors.password}</p>:null}
-                <button type="submit" className="w-72 mt-5 h-12 bg-blue-900 text-white  rounded animate-bounce hover:bg-blue-800"> Sign In</button>
-            </form>
+  // Render the login form
+  return (
+    <div className='form-container'>
+      <h1>Sign in</h1>
+      <form onSubmit={handleSubmit}>
+        <div className='form-input'>
+          <label htmlFor='email'>Email</label>
+          <input
+            type='email'
+            id='email'
+            name='email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
-            
-
-        </>
-    )
+        <div className='form-input'>
+          <label htmlFor='password'>Password</label>
+          <input
+            type='password'
+            id='password'
+            name='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div className='form-input'>
+          <button className='btn btn-block'>Submit</button>
+        </div>
+      </form>
+    </div>
+  );
 }
+
+// Export the Login component as the default export of this module
+export default Login;

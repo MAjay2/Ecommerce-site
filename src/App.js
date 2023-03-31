@@ -1,38 +1,26 @@
-import React from "react"
-import './index.css';
-import Home from "./Home";
-import { LoginContextProvider } from "./LoginContext";
-import { BrowserRouter as Router, Routes,Route,Link } from "react-router-dom";
-import Cart from "./Cart";
-import Login from "./Login";
-import Registration from "./Registration";
-
-
-
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Home from './Home';
+import Cart from './Cart';
+import Register from './Register';
+import Navbar from './Navbar';
+import ProductInfo from './ProductInfo';
+import Login from './Login';
 
 
 function App() {
-  return(
-  <div>
-      
-      <LoginContextProvider>
-        <Router>
-          
+  return (
+    <Router>
+      <Navbar/>
       <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/cart"element={<Cart/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/registration" element={<Registration/>}/>
-        </Routes> 
-        </Router> 
-   
-   
-    </LoginContextProvider>
-    
-  </div>
-
-  )
-
-}
-
-export default App;
+        <Route path='/' element={<Home/>} />
+        <Route path='/product/:id' element={<ProductInfo/>} />
+        <Route path='/cart' element={<Cart/>} />
+        <Route path='/register' element={<Register/>} />
+        <Route path='/login' element={<Login/>} />
+      </Routes>
+      <ToastContainer/>
+    </Router>
+  );
+}export default App;

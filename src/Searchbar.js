@@ -1,13 +1,32 @@
-import React from "react";
-import "./index.css"
+import React, { useState, useEffect } from 'react';
+import { FaSearch } from 'react-icons/fa';
+import { CartState } from './CartContext';
 
+// Define Searchbar component
+function Searchbar() {
+  // Set up state for query and get products from context provider
+  const [query, setQuery] = useState('');
+  const { state: { products }, dispatch } = CartState();
 
-export default function Searchbar(){
+  // Effect hook to dispatch search action on query change
+  useEffect(() => {
+    if (query) {
+      dispatch({
+        type: 'SEARCH_PRODUCT',
+        payload: query
+      });
+    }
+  }, [dispatch, query]);
 
-
-return(
-    <form className="text-center mt-10">
-    <input className="w-3/5 pl-5 h-12 bg-gray-100" type="text" placeholder=" 🔍 Search Product"/>
+  // Render search bar with input field and search icon
+  return (
+    <form className='form-search'>
+      <div className='form-group'>
+        <span><FaSearch className='search-icon'/></span>
+        <input type='text' placeholder='search' value={query} onChange={e => setQuery(e.target.value)} />
+      </div>
     </form>
-)
+  );
 }
+
+export default Searchbar;
