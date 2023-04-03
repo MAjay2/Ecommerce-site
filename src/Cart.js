@@ -8,7 +8,10 @@ function Cart() {
   const {state:{cart},dispatch} = CartState()
 
   // calculating the total price of items in the cart
-  let totalItems = cart?.map(c=>parseFloat(c.price))?.reduce((a,c)=>a+c, 0)
+  let totalItems = 0;
+  if(cart && cart.length > 0) {
+    totalItems = cart.map(c=>parseFloat(c.price) * c.qty).reduce((a,c)=>a+c)
+  }
   console.log(totalItems)
 
   // rendering the cart items in a table

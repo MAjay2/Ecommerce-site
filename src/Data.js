@@ -28,7 +28,7 @@ const Data = [
     title:'watch',
     body:'Lorem ipsum dolor sit amet consectetur. Eget orci viverra vel',
     price:'50.00',
-    imgUrl:'./asset/watch.png'
+    imgUrl:'./assets/watch.png'
    },
    {id:'6',
      title:'Jeans',

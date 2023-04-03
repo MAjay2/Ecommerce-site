@@ -8,11 +8,11 @@ const CartReducer = (state, action) => {
         ...state,
         cart: [...state.cart, { ...action.payload, qty: 1 }],
       };
-    // If the action type is REMOVE_FROM_CART, remove the item with the matching id from the cart array
+   // If the action type is REMOVE_FROM_CART, remove the item with the matching id from the cart array
     case 'REMOVE_FROM_CART':
       return {
         ...state,
-        cart: state.cart.filter(c => c.id !== action.payload.id),
+        cart: state.cart.filter(c => c.id !== action.payload),
       };
     // If the action type is INCREMENT_CART_QTY, increment the quantity of the item with the matching id in the cart array by the payload value
     case 'INCREMENT_CART_QTY':
@@ -27,9 +27,10 @@ const CartReducer = (state, action) => {
       return {
         ...state,
         cart: state.cart.map(c =>
-          c.id === action.payload.id ? { ...c, qty: c.qty - action.payload } : c
+          c.id === action.payload.id ? { ...c, qty: c.qty - action.payload.val } : c
         ),
       };
+    
     // If the action type is SEARCH_PRODUCT, filter the products array to only include items with a title that includes the payload string
     case 'SEARCH_PRODUCT':
       return {

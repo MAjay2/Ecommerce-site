@@ -23,7 +23,7 @@ const CartItems = ({ item, dispatch }) => {
   const totalItem = item.qty * item.price; // Calculate the total price of the item
 
   // Define the 'handleQtyIcreament' function to increase the quantity of the item in the cart
-  const handleQtyIcreament = () => {
+  const handleQtyIncrement = () => {
     dispatch({
       type: 'INCREMENT_CART_QTY',
       payload: {
@@ -33,6 +33,21 @@ const CartItems = ({ item, dispatch }) => {
     });
   };
 
+  // Define the 'handleQtyDecrement' function to decrease the quantity of the item in the cart
+const handleQtyDecrement = () => {
+  // Check if the current quantity is greater than 0
+  if (item.qty > 0) {
+    dispatch({
+      type: 'DECREMENT_CART_QTY',
+      payload: {
+        id: `${item.id}`,
+        val: 1
+      }
+    });
+  }
+};
+
+
   // Define the 'handleDelete' function to remove the item from the cart
   const handleDelete = () => {
     dispatch({
@@ -40,7 +55,7 @@ const CartItems = ({ item, dispatch }) => {
       payload: `${item.id}`
     });
   };
-// Render the details of the item in the cart
+  // Render the details of the item in the cart
   return (
     <tr>
       <td style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
@@ -49,9 +64,9 @@ const CartItems = ({ item, dispatch }) => {
       </td>
       <td>$ {item.price}</td>
       <td className='add-btn'>
-        <ButtonCart faIcon={<FaMinus className='fa' />} />
+        <ButtonCart faIcon={<FaMinus className='fa' />} onHandleClick={handleQtyDecrement} />
         <ButtonCart faIcon={item.qty} />
-        <ButtonCart faIcon={<FaPlus className='fa' />} onHandleClick={handleQtyIcreament} />
+        <ButtonCart faIcon={<FaPlus className='fa' />} onHandleClick={handleQtyIncrement} />
       </td>
       <td>$ {totalItem}</td>
       <td>
@@ -62,5 +77,6 @@ const CartItems = ({ item, dispatch }) => {
     </tr>
   );
 };
+
 
 export default CartItems;
