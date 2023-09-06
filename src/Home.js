@@ -12,7 +12,7 @@ function Home() {
 
   // render the search bar and cart list components
   return (
-    <div className='container'>
+    <div className=''>
       <SearchBar products={state.products} />
       <CardList products={state.products} />
     </div>

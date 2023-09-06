@@ -20,7 +20,7 @@ function Searchbar() {
 
   // Render search bar with input field and search icon
   return (
-    <form className='form-search'>
+    <form className='form-search mt-10'>
       <div className='form-group'>
         <span><FaSearch className='search-icon'/></span>
         <input type='text' placeholder='search' value={query} onChange={e => setQuery(e.target.value)} />

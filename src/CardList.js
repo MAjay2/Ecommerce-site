@@ -7,7 +7,7 @@ function CardList({products}) {
         <Card item={item} key={item.id}/>
     ))
   return (
-    <div className='card-container'>
+    <div className=' mt-10 ml-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 place-items-center'>
       {cardList}
     </div>
   )

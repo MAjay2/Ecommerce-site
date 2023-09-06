@@ -6,9 +6,9 @@ import Button from './Button'
 // Card component receives an 'item' object as props
 function Card({ item }) {
   return (
-    <div className='card'>
-      <div className='card-image'>
-        <img src={item.imgUrl} alt={item.name} />
+    <div className=' shadow-2xl w-[287px] mr-10 mb-10 mt-10 rounded-lg'>
+      <div className=' '>
+        <img className='rounded-t-lg' src={item.imgUrl} alt={item.name} />
       </div>
 
       <div className='card-content'>
